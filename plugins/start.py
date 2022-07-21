@@ -13,11 +13,11 @@ import datetime
 currentTime = datetime.datetime.now()
 
 if currentTime.hour < 12:
-	wish = "Good morning."
+	wish = "Good Morning"
 elif 12 <= currentTime.hour < 18:
-	wish = 'Good afternoon.'
+	wish = 'Good Afternoon'
 else:
-	wish = 'Good evening.'
+	wish = 'Good Evening'
 
 #-------------------------------
 
@@ -25,13 +25,11 @@ else:
 async def start(client,message):
 	insert(int(message.chat.id))
 	await message.reply_text(text =f"""
-	Hello {wish} {message.from_user.first_name }
-	__I am file renamer bot, Please sent any telegram 
-	**Document Or Video** and enter new filename to rename it__
+	Hai {wish} {message.from_user.first_name }, I Am Rename Bot
 	""",reply_to_message_id = message.message_id ,  
 	reply_markup=InlineKeyboardMarkup(
-	 [[ InlineKeyboardButton("Support 🇮🇳" ,url="https://t.me/lntechnical") ], 
-	[InlineKeyboardButton("Subscribe 🧐", url="https://youtube.com/c/LNtechnical") ]  ]))
+	 [[ InlineKeyboardButton("Help" ,url="https://t.me/AloneWhiteFang") ], 
+	[InlineKeyboardButton("Channel", url="https://t.me/DevilBotz") ]  ]))
 
 
 
@@ -43,7 +41,7 @@ async def send_doc(client,message):
        	try:
        		await client.get_chat_member(update_channel, user_id)
        	except UserNotParticipant:
-       		await message.reply_text("**__You are not subscribed my channel__** ",reply_to_message_id = message.message_id, reply_markup = InlineKeyboardMarkup([ [ InlineKeyboardButton("Support 🇮🇳" ,url=f"https://t.me/{update_channel}") ]   ]))
+       		await message.reply_text("**Join Updates Channel** ",reply_to_message_id = message.message_id, reply_markup = InlineKeyboardMarkup([ [ InlineKeyboardButton("Support 🇮🇳" ,url=f"https://t.me/{update_channel}") ]   ]))
        		return
        date = message.date
        _used_date = find_one(user_id)
@@ -56,7 +54,7 @@ async def send_doc(client,message):
        ltime = str(conversion)
        if left > 0:
        	await app.send_chat_action(message.chat.id, "typing")
-       	await message.reply_text(f"```Sorry Dude I am not only for YOU \n Flood control is active so please wait for {ltime}```",reply_to_message_id = message.message_id)
+       	await message.reply_text(f"Flood Wait : {ltime}",reply_to_message_id = message.message_id)
        else:
        	
        	media = await client.get_messages(message.chat.id,message.message_id)
@@ -65,4 +63,4 @@ async def send_doc(client,message):
        	filename = file.file_name
        	filesize = humanize.naturalsize(file.file_size)
        	fileid = file.file_id
-       	await message.reply_text(f"""__What do you want me to do with this file?__\n**File Name** :- {filename}\n**File Size** :- {filesize}\n**Dc ID** :- {dcid} """,reply_to_message_id = message.message_id,reply_markup = InlineKeyboardMarkup([[ InlineKeyboardButton("📝 Rename",callback_data = "rename"),InlineKeyboardButton("✖️ Cancel",callback_data = "cancel")  ]]))
+       	await message.reply_text(f"""**File Name** : {filename}\n**File Size** : {filesize}\n**Dc ID** : {dcid} """,reply_to_message_id = message.message_id,reply_markup = InlineKeyboardMarkup([[ InlineKeyboardButton("RENAME",callback_data = "rename"),InlineKeyboardButton("Cancel",callback_data = "cancel")  ]]))
