@@ -28,7 +28,7 @@ async def start(client,message):
 	Hai {wish} {message.from_user.first_name }, I Am Rename Bot
 	""",reply_to_message_id = message.message_id ,  
 	reply_markup=InlineKeyboardMarkup(
-	 [[ InlineKeyboardButton("Help" ,url="https://t.me/AloneWhiteFang") ], 
+	 [[ InlineKeyboardButton("Help" ,url="https://t.me/LoneWhiteFang") ], 
 	[InlineKeyboardButton("Channel", url="https://t.me/DevilBotz") ]  ]))
 
 
